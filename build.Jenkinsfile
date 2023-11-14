@@ -9,7 +9,6 @@ pipeline {
                 docker build -t nancyf_roberta .
                 docker tag nancyf_roberta:latest 933060838752.dkr.ecr.eu-north-1.amazonaws.com/nancyf_roberta:latest
                 docker push 933060838752.dkr.ecr.eu-north-1.amazonaws.com/nancyf_roberta:latest
-
                                 '''
             }
         }
