@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Lint') {
             steps {
-                echo "linting"
+                echo "linting_____"
             }
         }
         stage('Functional test') {
