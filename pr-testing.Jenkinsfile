@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Lint') {
             steps {
-                echo "linting"
+                echo "linting_____"
             }
         }
         stage('Functional test') {
             steps {
-                echo "testing"
+                echo "testing__"
             }
         }
     }
