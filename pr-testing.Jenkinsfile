@@ -4,10 +4,12 @@ pipeline {
     stages {
         stage('Unittest') {
             steps {
-                sh
-                """pip install pytest
-                python3 -m pytest --junitxml results.xml tests
-                """
+                script {
+                    sh """
+                        pip install pytest
+                        python3 -m pytest --junitxml results.xml tests
+                    """
+                }
             }
         }
         stage('Lint') {
