@@ -11,12 +11,20 @@ pipeline {
                     """
                 }
             }
+
+            post {
+                always {
+                    junit allowEmptyResults: true, testResults: 'results.xml'
+                }
+            }
         }
+
         stage('Lint') {
             steps {
                 echo "linting_____"
             }
         }
+
         stage('Functional test') {
             steps {
                 echo "testing__"
