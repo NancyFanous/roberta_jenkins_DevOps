@@ -21,7 +21,11 @@ pipeline {
 
         stage('Lint') {
             steps {
-                sh 'python3 -m pylint -f parseable --reports=no *.py > pylint.log'
+                sh """
+                pip install pylint
+                python3 -m pylint -f parseable --reports=no *.py > pylint.log
+
+                 """
             }
 
             post {
