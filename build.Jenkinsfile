@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image '933060838752.dkr.ecr.eu-north-1.amazonaws.com/nancy_agent_image:latest'
+            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     stages {
         stage('Build') {
@@ -9,18 +14,16 @@ pipeline {
                 docker build -t nancyf_roberta .
                 docker tag nancyf_roberta:latest 933060838752.dkr.ecr.eu-north-1.amazonaws.com/nancyf_roberta:latest
                 docker push 933060838752.dkr.ecr.eu-north-1.amazonaws.com/nancyf_roberta:latest
-                                '''
+                '''
             }
         }
-       stage('Trigger Deploy') {
+
+        stage('Trigger Deploy') {
             steps {
                 build job: 'RobertaDeploy', wait: false, parameters: [
-                  string(name: 'ROBERTA_IMAGE_URL', value: "933060838752.dkr.ecr.eu-north-1.amazonaws.com/nancyf_roberta>")
-        ]
-
+                    string(name: 'ROBERTA_IMAGE_URL', value: '933060838752.dkr.ecr.eu-north-1.amazonaws.com/nancyf_roberta')
+                ]
             }
         }
-
-
     }
 }

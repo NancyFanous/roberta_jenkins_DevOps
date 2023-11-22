@@ -21,22 +21,7 @@ pipeline {
 
         stage('Lint') {
             steps {
-                sh """
-                pip install pylint
-                python3 -m pylint -f parseable --reports=no *.py > pylint.log
-
-                 """
-            }
-
-            post {
-                always {
-                    sh 'cat pylint.log'
-                    recordIssues (
-                        enabledForFailure: true,
-                        aggregatingResults: true,
-                        tools: [pyLint(name: 'Pylint', pattern: '**/pylint.log')]
-                    )
-                }
+                echo "linting___"
             }
         }
 

@@ -1,1 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="4" time="0.014" timestamp="2023-11-21T16:34:50.635566" hostname="Nancys-MacBook-Pro.local"><testcase classname="tests.test_cache.TestCacheFunctions" name="test_get_from_cache_existing_key" time="0.000" /><testcase classname="tests.test_cache.TestCacheFunctions" name="test_get_from_cache_non_existing_key" time="0.000" /><testcase classname="tests.test_cache.TestCacheFunctions" name="test_put_in_cache_exceeding_capacity" time="0.000" /><testcase classname="tests.test_cache.TestCacheFunctions" name="test_put_in_cache_within_capacity" time="0.000" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="4" time="0.021" timestamp="2023-11-21T19:27:34.969524" hostname="Nancys-MacBook-Pro.local"><testcase classname="tests.test_cache.TestCacheFunctions" name="test_get_from_cache_existing_key" time="0.000" /><testcase classname="tests.test_cache.TestCacheFunctions" name="test_get_from_cache_non_existing_key" time="0.000" /><testcase classname="tests.test_cache.TestCacheFunctions" name="test_put_in_cache_exceeding_capacity" time="0.001"><failure message="AssertionError: 'existing_value' is not None">self = &lt;test_cache.TestCacheFunctions testMethod=test_put_in_cache_exceeding_capacity&gt;
+
+    def test_put_in_cache_exceeding_capacity(self):
+        for i in range(2*cache_max_size):
+            put_in_cache(f'new_key{i}', f'new_value{1}')
+    
+        result = get_from_cache('existing_key')
+&gt;       self.assertIsNone(result)
+E       AssertionError: 'existing_value' is not None
+
+tests/test_cache.py:32: AssertionError</failure></testcase><testcase classname="tests.test_cache.TestCacheFunctions" name="test_put_in_cache_within_capacity" time="0.000" /></testsuite></testsuites>
